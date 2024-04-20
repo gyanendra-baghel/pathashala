@@ -1,6 +1,6 @@
 import React ,{ useContext } from "react";
 import { assets } from "../../assets/assets"
-import { Context } from "../../context/context";
+import { ChatBotContext } from "../../context/ChatBotContext";
 import Markdown from 'react-markdown'
 
 function Chat() {
@@ -13,7 +13,7 @@ function Chat() {
     setinput,
     input,
     newchat
-  } = useContext(Context);
+  } = useContext(ChatBotContext);
 
 
   const handleSubmit = (e) => {

@@ -1,9 +1,9 @@
 import { createContext, useState } from "react";
 import runChat from "../config/chat-bot.js";
 
-export const Context = createContext();
+export const ChatBotContext = createContext();
 
-const ContextProvider = (props)=>{
+const ChatBotProvider = (props)=>{
 
 
     const[input,setinput] = useState("");
@@ -77,4 +77,4 @@ const ContextProvider = (props)=>{
         </Context.Provider>
     );
 }
-export default ContextProvider
+export default ChatBotProvider

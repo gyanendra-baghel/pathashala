@@ -25,7 +25,7 @@ function CreateClassroom() {
         e.preventDefault();
         setError("");
         try {
-            const response = await axios.post("http://localhost:8080/api/v1/classroom/create", {name:title, description:desc, teacherId:teacherID });
+            const response = await axios.post("/api/v1/classroom/create", {name:title, description:desc, teacherId:teacherID });
             if(response.data.statusCode == 200) {
                 setError(response.data.message);
                 navigate("/");

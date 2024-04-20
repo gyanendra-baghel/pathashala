@@ -19,7 +19,7 @@ function SideBar() {
 
       if (user.role === "Teacher") {
         try {
-          const response = await axios.post("http://localhost:8080/api/v1/classroom/", { teacherId: userID });
+          const response = await axios.post("/api/v1/classroom/", { teacherId: userID });
           const data = response.data;
           setClasses(data);
         } catch (error) {
