@@ -21,7 +21,7 @@ function Login() {
     setLoading(true);
     setError("");
     try {
-      const response = await axios.post("http://localhost:8080/api/v1/users/login", {username, password});
+      const response = await axios.post("/api/v1/users/login", {username, password});
       if(response.data.statusCode == 200) {
         console.log(response.data.user);
         setUser(response.data.user);

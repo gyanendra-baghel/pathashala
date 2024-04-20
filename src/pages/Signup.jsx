@@ -22,7 +22,7 @@ function Signup() {
     setLoading(true);
     setError('');
     try {
-      const response = await axios.post('http://localhost:8080/api/v1/users/signup', {
+      const response = await axios.post('/api/v1/users/signup', {
         fullname,
         email,
         username,

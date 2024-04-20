@@ -10,7 +10,7 @@ function Logout() {
     useEffect(()=> {
         setUser(null);
         try {
-            const response = axios.post("http://localhost:8080/api/v1/users/logout");
+            const response = axios.post("/api/v1/users/logout");
             navigate("/login");
         } catch (err) {
             navigate("/login");
