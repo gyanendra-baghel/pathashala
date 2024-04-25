@@ -12,7 +12,6 @@ function SideBar({user}) {
         const response = await axios.post("/api/v1/classroom/all", { userId: user._id });
         if(response.data.statusCode == 200) {
           setClasses(response.data.classrooms);
-          console.log(response.data);
         }
       } catch (error) {
         console.error("Error fetching classroom data:", error);

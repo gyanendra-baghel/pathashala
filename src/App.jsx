@@ -12,13 +12,14 @@ import BoardProvider from "./context/BoardContext"
 import './App.css'
 import './chat.css'
 import Auth from "./utils/Auth";
+import NoAuth from "./utils/NoAuth";
 
 function App() {
   return (
     <BrowserRouter>
     <Routes>
-        <Route path="/signup" element={<Signup/>} />
-        <Route path="/login" element={<Login/>} />
+        <Route path="/signup" element={<NoAuth><Signup /></NoAuth>} />
+        <Route path="/login" element={<NoAuth><Login /></NoAuth>} />
         <Route path="/" element={<Auth/>}>
           <Route path="" element={<Home />} />
           <Route path="logout" element={<Logout/> } />
