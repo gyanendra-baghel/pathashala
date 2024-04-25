@@ -4,8 +4,9 @@ import { UserContext } from "../context/UserContext";
 import axios from "axios";
 
 function SideBar() {
-  const [userID, setUserID] = useState("");
+  const [userId, setUserId] = useState("");
   const [classes, setClasses] = useState([]);
+
   const  {user} = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -15,27 +16,29 @@ function SideBar() {
         navigate("/login");
         return;
       }
-      setUserID(user._id);
-
-      if (user.role === "Teacher") {
-        try {
-          const response = await axios.post("/api/v1/classroom/", { teacherId: userID });
-          const data = response.data;
-          setClasses(data);
-        } catch (error) {
-          console.error("Error fetching classroom data:", error);
+      setUserId(user._id);
+    
+      try {
+        console.log(userId);
+        const response = await axios.post("/api/v1/classroom/all", { userId });
+        if(response.data.statusCode == 200) {
+          setClasses(response.data.classrooms);
+          console.log(response.data);
         }
+      } catch (error) {
+        console.error("Error fetching classroom data:", error);
       }
     };
 
     fetchData();
-  })
+  },[])
   return (
     <div className='sidebar'>
       <h2>Classrooms</h2>
         <ul>
+          {classes.length == 0 && (<h3 className="text-center mt-2">No Classes</h3>)}
         {classes.map((cl, i) => (
-          <li key={i}><Link to={`/class/${cl.name}`}>{cl.name}</Link></li>
+          <li key={i}><Link to={`/class/${cl._id}`}>{cl.name}</Link></li>
         ))}
         </ul>
     </div>

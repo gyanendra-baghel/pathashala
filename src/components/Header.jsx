@@ -25,12 +25,7 @@ function Header() {
                   </>
                 )}
                 {user && (
-                  <>
-                  {user.role == "Teacher" && (
-                    <Link to="/create">Create</Link>
-                  )}
                   <Link className='nav-link' to="/logout">Logout</Link>
-                  </>
                 )}
                 
             </nav>

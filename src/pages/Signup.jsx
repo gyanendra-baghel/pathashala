@@ -47,7 +47,7 @@ function Signup() {
     <>
       <Header />
       <div className="screen-main center">
-        <div className="login">
+        <div className="form mt-6">
           <form onSubmit={handleSubmit}>
             <h1>Signup</h1>
             <label htmlFor="fullName">Full Name</label>
@@ -58,7 +58,7 @@ function Signup() {
               onChange={(e) => setFullName(e.target.value)}
             />
             <label htmlFor="email">Email Address</label>
-            <input
+            <input 
               type="email"
               id="email"
               value={email}
@@ -78,7 +78,7 @@ function Signup() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <label htmlFor="role">Password</label>
+            <label htmlFor="role">ROLE</label>
             <select id="role" value={role} onChange={(e) => { setRole(e.target.value)}}>
               <option>Student</option>
               <option>Teacher</option>
@@ -87,7 +87,7 @@ function Signup() {
             <button className="button" type="submit" disabled={loading}>
               {loading ? 'Signing up...' : 'Sign up'}
             </button>
-            <p>If you alraedy have account the <Link to="/login">Login</Link></p>
+            <p className='error'>If you already have account then <Link to="/login">Login</Link>.</p>
           </form>
         </div>
       </div>

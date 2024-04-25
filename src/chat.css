@@ -196,12 +196,11 @@
   margin-left: 3px;
 }
 .result-data {
+  padding: 15px 5px;
+  border-radius: 10px;
   display: flex;
   align-items: start;
-  gap: 20px;
-  border-radius: 20px;
-  background-color: #1a1a1f;
-  border: 25px black solid;
+  background-color: #121213;
 }
 .result-data img {
   width: 4rem;

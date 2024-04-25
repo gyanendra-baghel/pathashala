@@ -1,27 +1,34 @@
-import React, { createContext, useMemo, useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import io from "socket.io-client"
 import { UserContext } from './UserContext';
-import { useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 const BoardContext = createContext(null);
 
-function BoardProvider(props) {
+function BoardProvider() {
   const { userName } = useContext(UserContext);
+  const [socket, setSocket] = useState();
 
-  const socket = io("//localhost:8080/board",{
-    withCredentials: true,
-    reconnectionDelay: 10000, // defaults to 1000
-    reconnectionDelayMax: 10000, // defaults to 5000
-  });
+  useEffect(()=> {
+    const newSocket = io("//localhost:8080/board", {
+      withCredentials: true,
+      reconnectionDelay: 10000, // defaults to 1000
+      reconnectionDelayMax: 10000, // defaults to 5000
+    });
   
-  socket.on("connect", () => {
-    console.log("Socket Connected");
-  })
+    newSocket.on("connect", () => {
+      setSocket(socketConn);
+      console.log("Socket Connected");
+    })
 
+    return () =>  {
+      newSocket.disconnect();
+    }
+  },[]);
 
   return (
     <BoardContext.Provider value={socket}>
-        {props.children}
+      <Outlet/>
     </BoardContext.Provider>
   )
 }

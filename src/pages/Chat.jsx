@@ -1,6 +1,6 @@
 import React ,{ useContext } from "react";
-import { assets } from "../../assets/assets"
-import { ChatBotContext } from "../../context/ChatBotContext";
+import { assets } from "../assets/assets"
+import { ChatBotContext } from "../context/ChatBotContext";
 import Markdown from 'react-markdown'
 
 function Chat() {

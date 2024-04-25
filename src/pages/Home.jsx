@@ -4,30 +4,29 @@ import axios from "axios"
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import SideBar from '../components/Sidebar'
-import Assignment from '../components/Assignment'
 import { UserContext } from '../context/UserContext'
-import JoinStudent from '../components/JoinStudent'
 import ClassRoom from '../components/ClassRoom'
+import CreateClassroom from './Classroom/CreateClassroom'
 
 function Home() {
 
   const navigate = useNavigate();
-  const {user, setUser} = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const { classId } = useParams();
 
   useEffect(() => {
     if(!user) {
         navigate("/signup");
     }
-    console.log(classId);
-  })
+  },[]);
+
+
   return (
     <div>
       <Header/>
       <main className='screen-main'>
         <SideBar/>
-        { classId && (<ClassRoom name={classId}/>) }
-        {classId}
+        { user?.role == "Teacher" && (classId ? (<ClassRoom classId={classId}/>) : <CreateClassroom />) }
       </main>
       <Footer/>
     </div>

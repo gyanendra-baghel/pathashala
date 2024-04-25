@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../context/UserContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios"
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -37,7 +37,7 @@ function Login() {
     <>
     <Header/>
     <main className='screen-main center'>
-      <div className='login'>
+      <div className='form'>
         <form action="" onSubmit={submitHandler}>
           <h1>Log in</h1>
           <label htmlFor="">username</label>
@@ -47,6 +47,7 @@ function Login() {
           <button className='button'>
             {loading ? 'Logging in...' : 'Log in'}
           </button>
+          <p className='error'>If you not have account then <Link to="/signup">Signup</Link>.</p>
         </form>
         {error && <div className="error">{error}</div>}
       </div>
