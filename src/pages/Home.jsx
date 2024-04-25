@@ -25,7 +25,7 @@ function Home() {
     <div>
       <Header/>
       <main className='screen-main'>
-        <SideBar/>
+        <SideBar user={user}/>
         { user?.role == "Teacher" && (classId ? (<ClassRoom classId={classId}/>) : <CreateClassroom />) }
       </main>
       <Footer/>

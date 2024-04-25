@@ -3,24 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import axios from "axios";
 
-function SideBar() {
-  const [userId, setUserId] = useState("");
+function SideBar({user}) {
   const [classes, setClasses] = useState([]);
-
-  const  {user} = useContext(UserContext);
-  const navigate = useNavigate();
 
   useEffect(()=> {
     const fetchData = async () => {
-      if (!user) {
-        navigate("/login");
-        return;
-      }
-      setUserId(user._id);
-    
       try {
-        console.log(userId);
-        const response = await axios.post("/api/v1/classroom/all", { userId });
+        const response = await axios.post("/api/v1/classroom/all", { userId: user._id });
         if(response.data.statusCode == 200) {
           setClasses(response.data.classrooms);
           console.log(response.data);
@@ -31,7 +20,8 @@ function SideBar() {
     };
 
     fetchData();
-  },[])
+  },[user]);
+
   return (
     <div className='sidebar'>
       <h2>Classrooms</h2>
