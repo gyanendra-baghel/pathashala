@@ -12,7 +12,7 @@ function Header() {
         <div className="container">
             <Link to="/" className="logo">
                 <img src={logo}/>
-                <p>EduTechIQ</p>
+                <p>Pathshala</p>
             </Link>
             <nav className="nav-links">
                 <Link className='nav-link' to="/board">Board</Link>

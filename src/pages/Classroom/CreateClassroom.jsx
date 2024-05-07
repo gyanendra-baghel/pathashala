@@ -11,7 +11,7 @@ function CreateClassroom() {
     const [teacherID, setTeacherID] = useState("");
     const [error, setError] = useState("");
 
-    const { user, setUser } = useContext(UserContext);
+    const { user, setUser, classRooms, setClassRooms } = useContext(UserContext);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -26,9 +26,10 @@ function CreateClassroom() {
         setError("");
         try {
             const response = await axios.post("/api/v1/classroom/create", { name: title, description: desc, teacherId: teacherID });
-            if (response.data.statusCode == 200) {
+            if (response.status == 200) {
+                console.log(response);
                 setError(response.data.message);
-                navigate("/");
+                setClassRooms([...classRooms, {name: title, _id: response.data.classRoom._id}]);
             }
         } catch (err) {
             setError("Not created");
